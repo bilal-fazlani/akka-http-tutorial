@@ -7,7 +7,7 @@ import akka.util.ByteString
 
 import scala.util.Random
 
-object StreamRandomNumbers extends WebServer {
+object III_StreamRandomNumbers extends WebServer {
 
   val numbers = Source.fromIterator(() => {
     Iterator.continually(Random.nextInt())

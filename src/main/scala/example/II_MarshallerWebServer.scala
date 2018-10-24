@@ -10,7 +10,7 @@ import spray.json.RootJsonFormat
 
 import scala.concurrent.Future
 
-object MarshallerWebServer extends WebServer {
+object II_MarshallerWebServer extends WebServer {
 
   final case class Item(name: String, id: Long)
 
