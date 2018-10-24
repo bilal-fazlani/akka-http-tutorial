@@ -1,18 +1,13 @@
 package example
 
-import akka.actor.ActorSystem
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.Directives._
-import akka.stream.ActorMaterializer
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
 
 import scala.util.Random
 
-object StreamRandomNumbers extends App {
-  implicit val system = ActorSystem("my-system")
-  implicit val materializer = ActorMaterializer()
-  implicit val executionContext = system.dispatcher
+object StreamRandomNumbers extends WebServer {
 
   val numbers = Source.fromIterator(() => {
     Iterator.continually(Random.nextInt())
@@ -27,5 +22,5 @@ object StreamRandomNumbers extends App {
     }
   }
 
-  RouteUtil.serverRoutes(route)
+  startServer()
 }

@@ -1,23 +1,16 @@
 package example
 
 import akka.Done
-import akka.actor.ActorSystem
-import akka.http.scaladsl.Http
+import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
-import akka.stream.ActorMaterializer
 import spray.json.DefaultJsonProtocol._
-import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
 import spray.json.RootJsonFormat
 
-import scala.concurrent.{ExecutionContext, Future}
-import scala.io.StdIn
+import scala.concurrent.Future
 
-object MarshallerWebServer extends App {
-  implicit val system: ActorSystem = ActorSystem("my-system")
-  implicit val materializer: ActorMaterializer = ActorMaterializer()
-  implicit val ec: ExecutionContext = system.dispatcher
+object MarshallerWebServer extends WebServer {
 
   final case class Item(name: String, id: Long)
 
@@ -65,5 +58,5 @@ object MarshallerWebServer extends App {
     }
   }
 
-  RouteUtil.serverRoutes(route)
+  startServer()
 }
