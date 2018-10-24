@@ -6,7 +6,6 @@ import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import akka.pattern.ask
 import akka.util.Timeout
-import example.IV_ActorInteractions.{Bid, Bids, GetBids}
 import spray.json.DefaultJsonProtocol._
 
 import scala.concurrent.Future
@@ -17,6 +16,19 @@ object IV_ActorInteractions extends WebServer {
   case class Bid(userId: String, offer: Int)
   case object GetBids
   case class Bids(bids: List[Bid])
+
+  class Auction extends Actor with ActorLogging {
+
+    var bids: List[Bid] = List.empty
+
+    override def receive: Receive = {
+      case bid @ Bid(userId, offer) =>
+        bids = bids :+ bid
+        log.info(s"bid complete: $userId, $$$offer")
+      case GetBids => sender() ! Bids(bids)
+      case _       => log.info("Invalid message")
+    }
+  }
 
   implicit val bidFormat = jsonFormat2(Bid)
   implicit val bidsFormat = jsonFormat1(Bids)
@@ -39,17 +51,4 @@ object IV_ActorInteractions extends WebServer {
   }
 
   startServer()
-}
-
-class Auction extends Actor with ActorLogging {
-
-  var bids: List[Bid] = List.empty
-
-  override def receive: Receive = {
-    case bid @ Bid(userId, offer) =>
-      bids = bids :+ bid
-      log.info(s"bid complete: $userId, $$$offer")
-    case GetBids => sender() ! Bids(bids)
-    case _       => log.info("Invalid message")
-  }
 }
