@@ -11,5 +11,5 @@ object I_BasicWebServer extends WebServer {
     }
   }
 
-  startServer()
+  start()
 }

@@ -13,6 +13,8 @@ import scala.concurrent.duration._
 
 object IV_ActorInteractions extends WebServer {
 
+  import WebServer._
+
   case class Bid(userId: String, offer: Int)
   case object GetBids
   case class Bids(bids: List[Bid])
@@ -50,5 +52,5 @@ object IV_ActorInteractions extends WebServer {
     }
   }
 
-  startServer()
+  start()
 }

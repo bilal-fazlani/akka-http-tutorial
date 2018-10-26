@@ -22,5 +22,5 @@ object III_StreamRandomNumbers extends WebServer {
     }
   }
 
-  startServer()
+  start()
 }

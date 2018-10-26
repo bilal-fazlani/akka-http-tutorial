@@ -7,6 +7,7 @@ import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import spray.json.DefaultJsonProtocol._
 import spray.json.RootJsonFormat
+import WebServer._
 
 import scala.concurrent.Future
 
@@ -58,5 +59,5 @@ object II_MarshallerWebServer extends WebServer {
     }
   }
 
-  startServer()
+  start()
 }
