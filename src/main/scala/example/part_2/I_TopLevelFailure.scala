@@ -1,13 +1,12 @@
 package example.part_2
 
-import akka.actor.{Actor, ActorLogging, Props}
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.Http.IncomingConnection
 import akka.http.scaladsl.model.{HttpEntity, HttpRequest, HttpResponse}
 import akka.stream.scaladsl.{Flow, Sink}
 import example.AkkaSystem
 
-object I_HandleConnectionFailure extends App with AkkaSystem {
+object I_TopLevelFailure extends App with AkkaSystem {
   val (host, port) = ("localhost", 8080)
 
   val logger = system.actorOf(MonitoringActor.props)
@@ -46,18 +45,4 @@ object I_HandleConnectionFailure extends App with AkkaSystem {
       .via(reactToTopLevelFailures)
       .to(handleConnections)
       .run()
-}
-
-class MonitoringActor extends Actor with ActorLogging {
-
-  override def preStart(): Unit = {
-    log.info("monitoring actor stated")
-  }
-
-  override def receive: Receive = {
-    case ex: Exception => log.error(ex, "error has occurred somewhere")
-  }
-}
-object MonitoringActor {
-  def props = Props(classOf[MonitoringActor])
 }
