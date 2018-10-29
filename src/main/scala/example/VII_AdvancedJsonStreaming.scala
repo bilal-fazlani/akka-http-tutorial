@@ -8,7 +8,7 @@ import akka.stream.scaladsl._
 
 import scala.concurrent.Future
 
-object VII_AdvancedJsonStreaming extends App {
+object VII_AdvancedJsonStreaming extends App with AkkaSystem {
   val input: String =
     """{"uid":1, "txt":"akka rocks"},
       |{"uid":2, "txt":"streaming is so hot right now"},
@@ -37,15 +37,11 @@ object VII_AdvancedJsonStreaming extends App {
   val httpResponse =
     HttpResponse(entity = HttpEntity(ContentTypes.`application/json`, input))
 
-  implicit val actorSystem = ActorSystem()
-  implicit val mat = ActorMaterializer()
-  implicit val ec = actorSystem.dispatcher
-
   httpResponse.entity.dataBytes
     .via(jsonStreamingSupport.framingDecoder) // pick your Framing (could be "\n" etc)
     .mapAsync(1) { byteString =>
       Unmarshal(byteString).to[Tweet]
     }
     .runForeach(println(_))
-    .onComplete(_ => actorSystem.terminate())
+    .onComplete(_ => system.terminate())
 }

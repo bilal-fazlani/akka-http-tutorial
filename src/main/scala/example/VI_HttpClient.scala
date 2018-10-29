@@ -1,22 +1,15 @@
 package example
 
-import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
-import akka.http.scaladsl.model.{HttpRequest, Uri}
 import akka.http.scaladsl.model.HttpMethods._
+import akka.http.scaladsl.model.{HttpRequest, Uri}
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
-import akka.stream.ActorMaterializer
 
-import scala.concurrent.ExecutionContext
 import scala.io.StdIn
 import scala.util.{Failure, Success}
 
-object VI_HttpClient extends App {
-
-  implicit val system: ActorSystem = ActorSystem()
-  implicit val materializer: ActorMaterializer = ActorMaterializer()
-  implicit val ec: ExecutionContext = system.dispatcher
+object VI_HttpClient extends App with AkkaSystem {
 
   val routes: Route = path("person") {
     get {
