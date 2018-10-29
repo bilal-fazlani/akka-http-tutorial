@@ -3,7 +3,7 @@ package example
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.{HttpEntity, HttpRequest, HttpResponse}
 
-import scala.util.Random
+import scala.util.{Random, Success}
 
 object VIII_ServerBinding extends App with AkkaSystem {
 
@@ -13,7 +13,14 @@ object VIII_ServerBinding extends App with AkkaSystem {
     .bind("localhost", 8080)
     //add a printline hook
     .mapMaterializedValue(bindingFuture => {
-      bindingFuture.onComplete(_ => println("server started..."))
+      bindingFuture
+        .onComplete {
+          case Success(_) =>
+            println("server started at port 8080")
+          case scala.util.Failure(exception) =>
+            println("could not bind port 8080")
+            system.terminate()
+        }
       bindingFuture
     })
     //handle every connection
