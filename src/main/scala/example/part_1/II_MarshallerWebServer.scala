@@ -1,13 +1,21 @@
-package example
+package example.part_1
 
 import akka.Done
-import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
 import akka.http.scaladsl.model.StatusCodes
-import akka.http.scaladsl.server.Directives._
+import akka.http.scaladsl.server.Directives.{
+  as,
+  complete,
+  entity,
+  get,
+  onSuccess,
+  path,
+  pathPrefix,
+  post
+}
 import akka.http.scaladsl.server.Route
-import spray.json.DefaultJsonProtocol._
+import example.WebServer
+import spray.json.DefaultJsonProtocol.{jsonFormat1, jsonFormat2}
 import spray.json.RootJsonFormat
-import WebServer._
 
 import scala.concurrent.Future
 

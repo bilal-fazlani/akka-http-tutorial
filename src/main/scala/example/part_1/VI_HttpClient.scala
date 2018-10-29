@@ -1,10 +1,11 @@
-package example
+package example.part_1
 
 import akka.http.scaladsl.Http
-import akka.http.scaladsl.model.HttpMethods._
+import akka.http.scaladsl.model.HttpMethods.GET
 import akka.http.scaladsl.model.{HttpRequest, Uri}
-import akka.http.scaladsl.server.Directives._
+import akka.http.scaladsl.server.Directives.{complete, get, path}
 import akka.http.scaladsl.server.Route
+import example.AkkaSystem
 
 import scala.io.StdIn
 import scala.util.{Failure, Success}

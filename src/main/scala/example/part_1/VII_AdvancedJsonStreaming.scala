@@ -1,12 +1,7 @@
-package example
+package example.part_1
 
-import akka.NotUsed
-import akka.actor.ActorSystem
-import akka.http.scaladsl.model._
-import akka.stream.ActorMaterializer
-import akka.stream.scaladsl._
-
-import scala.concurrent.Future
+import akka.http.scaladsl.model.{ContentTypes, HttpEntity, HttpResponse}
+import example.AkkaSystem
 
 object VII_AdvancedJsonStreaming extends App with AkkaSystem {
   val input: String =

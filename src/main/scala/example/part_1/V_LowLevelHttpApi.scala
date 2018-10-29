@@ -1,7 +1,7 @@
-package example
+package example.part_1
 
 import akka.http.scaladsl.model._
-import WebServer._
+import example.WebServer
 
 object V_LowLevelHttpApi extends App {
 

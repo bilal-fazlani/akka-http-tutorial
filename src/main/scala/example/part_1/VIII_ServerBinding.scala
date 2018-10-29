@@ -1,7 +1,8 @@
-package example
+package example.part_1
 
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.{HttpEntity, HttpRequest, HttpResponse}
+import example.AkkaSystem
 
 import scala.util.{Random, Success}
 

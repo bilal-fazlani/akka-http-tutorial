@@ -1,8 +1,9 @@
-package example
+package example.part_1
 
 import akka.NotUsed
-import akka.http.scaladsl.model._
-import akka.stream.scaladsl._
+import akka.http.scaladsl.model.{ContentTypes, HttpEntity, HttpResponse}
+import akka.stream.scaladsl.Source
+import example.AkkaSystem
 
 import scala.concurrent.Future
 

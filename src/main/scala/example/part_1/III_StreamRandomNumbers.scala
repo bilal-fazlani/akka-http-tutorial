@@ -1,9 +1,10 @@
-package example
+package example.part_1
 
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
-import akka.http.scaladsl.server.Directives._
+import akka.http.scaladsl.server.Directives.{complete, get, path}
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
+import example.WebServer
 
 import scala.util.Random
 

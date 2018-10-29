@@ -1,7 +1,8 @@
-package example
+package example.part_1
 
-import akka.http.scaladsl.server.Directives._
+import akka.http.scaladsl.server.Directives.{complete, get, path}
 import akka.http.scaladsl.server.Route
+import example.WebServer
 
 object I_BasicWebServer extends WebServer {
 
