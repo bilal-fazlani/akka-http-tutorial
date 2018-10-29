@@ -1,9 +1,9 @@
 package example.part_1
 
 import akka.http.scaladsl.model._
-import example.WebServer
+import example.{AkkaSystem, WebServer}
 
-object V_LowLevelHttpApi extends App {
+object V_LowLevelHttpApi extends App with AkkaSystem {
 
   val requestHandler: HttpRequest => HttpResponse = {
     case HttpRequest(HttpMethods.GET, Uri.Path("/resource"), _, _, _) =>
