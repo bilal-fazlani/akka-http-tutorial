@@ -19,9 +19,11 @@ abstract class WebServer extends App {
 
 object WebServer extends AkkaSystem {
 
+  private val localhost = "localhost"
+
   def start[X: ClassTag](route: Route, port: Int): Unit = {
     val bindingFuture: Future[Http.ServerBinding] =
-      Http().bindAndHandle(route, "localhost", port)
+      Http().bindAndHandle(route, localhost, port)
 
     bind(port, bindingFuture)
   }
@@ -29,7 +31,7 @@ object WebServer extends AkkaSystem {
   def start[X: ClassTag, Y: ClassTag](handler: HttpRequest => HttpResponse,
                                       port: Int): Unit = {
     val bindingFuture: Future[Http.ServerBinding] =
-      Http().bindAndHandleSync(handler, "localhost", port = port)
+      Http().bindAndHandleSync(handler, localhost, port = port)
 
     bind(port, bindingFuture)
   }
@@ -37,7 +39,7 @@ object WebServer extends AkkaSystem {
   private def bind(port: Int, bindingFuture: Future[Http.ServerBinding])(
       implicit system: ActorSystem,
       ec: ExecutionContext) = {
-    println(s"server online at http://localhost:$port")
+    println(s"server online at http://$localhost:$port")
 
     StdIn.readLine()
 

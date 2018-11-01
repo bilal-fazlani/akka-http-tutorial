@@ -1,9 +1,10 @@
 package example.part_3_directives
 
 import akka.http.scaladsl.model.HttpMethod
-import akka.http.scaladsl.server.{Directive, HttpApp, Route}
+import akka.http.scaladsl.server.{Directive, Route}
+import example.HttpApplication
 
-object III_MixingDirectives extends HttpApp {
+object III_MixingDirectives extends HttpApplication {
 
   val getOrPost: Directive[Unit] = get | post
 
@@ -25,9 +26,5 @@ object III_MixingDirectives extends HttpApp {
         complete(s"$m method for order $orderId")
       }
     }
-  }
-
-  def main(args: Array[String]): Unit = {
-    startServer("localhost", 8080)
   }
 }

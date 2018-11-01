@@ -1,8 +1,9 @@
 package example.part_3_directives
 
-import akka.http.scaladsl.server.{HttpApp, Route}
+import akka.http.scaladsl.server.Route
+import example.HttpApplication
 
-object I_Introduction extends HttpApp {
+object I_Introduction extends HttpApplication {
 
   val oneTime: Route = {
     println("MARK1")
@@ -28,8 +29,4 @@ object I_Introduction extends HttpApp {
   }
 
   override protected def routes: Route = everyTimeUsingCompleteDirective
-
-  def main(args: Array[String]): Unit = {
-    startServer("localhost", 8080)
-  }
 }

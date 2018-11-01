@@ -1,12 +1,9 @@
 package example.part_3_directives
 
-import akka.http.scaladsl.server.{HttpApp, Route}
+import akka.http.scaladsl.server.Route
+import example.HttpApplication
 
-object IV_ComposingDirectives extends HttpApp {
-
-  def main(args: Array[String]): Unit = {
-    startServer("localhost", 8080)
-  }
+object IV_ComposingDirectives extends HttpApplication {
 
   def innerRoute(id: Int): Route = {
     concat(get {

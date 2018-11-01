@@ -1,12 +1,9 @@
 package example.part_3_directives
 
-import akka.http.scaladsl.server.{HttpApp, Route}
+import akka.http.scaladsl.server.Route
+import example.HttpApplication
 
-object V_MixingDirectives_2 extends HttpApp {
-
-  def main(args: Array[String]): Unit = {
-    startServer("localhost", 8080)
-  }
+object V_MixingDirectives_2 extends HttpApplication {
 
   //important to not when you AND directives their extractions for a tuple
   val orderRoute = path("order" / IntNumber) & parameters('oem, 'expired ?)
