@@ -8,9 +8,9 @@ import example.part_5_authentication.V_OIDC_Authorization.{
 
 abstract class TMTApplication extends HttpApp {
 
-  def TMTAuth(permission: String): Directive0 =
+  def permission(name: String): Directive0 =
     authenticateOAuth2("master", Authentication.authenticator).flatMap { at =>
-      authorize(Authorization.hasPermission(at, permission))
+      authorize(Authorization.hasPermission(at, name))
     }
 
   def main(args: Array[String]): Unit = {

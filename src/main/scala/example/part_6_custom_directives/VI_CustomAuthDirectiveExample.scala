@@ -7,11 +7,11 @@ object VI_CustomAuthDirectiveExample extends TMTApplication {
 
   override protected def routes: Route =
     get {
-      TMTAuth("read_data") {
+      permission("read_data") {
         complete("OK")
       }
     } ~ post {
-      TMTAuth("write_data") {
+      permission("write_data") {
         complete("OK")
       }
     }
