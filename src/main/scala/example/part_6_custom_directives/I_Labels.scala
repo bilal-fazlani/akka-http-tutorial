@@ -1,7 +1,7 @@
 package example.part_6_custom_directives
 
 import akka.http.scaladsl.server.Route
-import example.HttpApplication
+import example.TMTApplication
 
 /**
   * There are 3 ways to create custom directives
@@ -9,7 +9,7 @@ import example.HttpApplication
   * 2. Transform existing directives
   * 3. Write from scratch
   */
-object I_Labels extends HttpApplication {
+object I_Labels extends TMTApplication {
 
   override protected def routes: Route = path("products") {
     val getOrPost = get | post

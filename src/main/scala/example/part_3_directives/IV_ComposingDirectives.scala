@@ -1,9 +1,9 @@
 package example.part_3_directives
 
 import akka.http.scaladsl.server.Route
-import example.HttpApplication
+import example.TMTApplication
 
-object IV_ComposingDirectives extends HttpApplication {
+object IV_ComposingDirectives extends TMTApplication {
 
   def innerRoute(id: Int): Route = {
     concat(get {

@@ -2,9 +2,9 @@ package example.part_5_authentication
 
 import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.server.directives.Credentials.{Missing, Provided}
-import example.HttpApplication
+import example.TMTApplication
 
-object III_BearerTokenExtraction extends HttpApplication {
+object III_BearerTokenExtraction extends TMTApplication {
 
   val tokenExtractor: Authenticator[String] = {
     case Provided(id) => Some(id) // verify the token here

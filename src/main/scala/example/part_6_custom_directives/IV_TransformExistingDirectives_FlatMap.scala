@@ -2,9 +2,9 @@ package example.part_6_custom_directives
 
 import akka.http.javadsl.server.Rejections
 import akka.http.scaladsl.server.{Directive1, Route}
-import example.HttpApplication
+import example.TMTApplication
 
-object IV_TransformExistingDirectives_FlatMap extends HttpApplication {
+object IV_TransformExistingDirectives_FlatMap extends TMTApplication {
 
   val idParam: Directive1[Int] = parameter('id.as[Int])
 

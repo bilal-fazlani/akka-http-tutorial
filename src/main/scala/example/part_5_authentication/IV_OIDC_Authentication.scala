@@ -3,11 +3,11 @@ package example.part_5_authentication
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
 import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.server.directives.Credentials.Provided
-import example.HttpApplication
+import example.TMTApplication
 import pdi.jwt.{JwtAlgorithm, JwtSprayJson}
 import spray.json.JsObject
 
-object IV_OIDC_Authentication extends HttpApplication {
+object IV_OIDC_Authentication extends TMTApplication {
 
   val authenticator: Authenticator[JsObject] = {
     case p @ Provided(token) => {

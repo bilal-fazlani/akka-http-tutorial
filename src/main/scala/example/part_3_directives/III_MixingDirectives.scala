@@ -2,9 +2,9 @@ package example.part_3_directives
 
 import akka.http.scaladsl.model.HttpMethod
 import akka.http.scaladsl.server.{Directive, Route}
-import example.HttpApplication
+import example.TMTApplication
 
-object III_MixingDirectives extends HttpApplication {
+object III_MixingDirectives extends TMTApplication {
 
   val getOrPost: Directive[Unit] = get | post
 

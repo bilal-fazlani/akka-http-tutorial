@@ -1,9 +1,9 @@
 package example.part_3_directives
 
 import akka.http.scaladsl.server.Route
-import example.HttpApplication
+import example.TMTApplication
 
-object I_Introduction extends HttpApplication {
+object I_Introduction extends TMTApplication {
 
   val oneTime: Route = {
     println("MARK1")

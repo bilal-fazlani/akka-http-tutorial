@@ -1,9 +1,9 @@
 package example.part_6_custom_directives
 
 import akka.http.scaladsl.server.{Directive, Directive1, Route}
-import example.HttpApplication
+import example.TMTApplication
 
-object III_TransformExistingDirectives_TMap extends HttpApplication {
+object III_TransformExistingDirectives_TMap extends TMTApplication {
 
   val twoInts: Directive[(Int, Int)] = parameter('int1.as[Int], 'int2.as[Int])
 

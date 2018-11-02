@@ -1,9 +1,9 @@
 package example.part_3_directives
 
 import akka.http.scaladsl.server.Route
-import example.HttpApplication
+import example.TMTApplication
 
-object II_FallbackRouting extends HttpApplication {
+object II_FallbackRouting extends TMTApplication {
   override protected def routes: Route =
     get {
       complete("GET REQUEST")
